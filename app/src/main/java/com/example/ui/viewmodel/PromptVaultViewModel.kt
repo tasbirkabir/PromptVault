@@ -125,7 +125,7 @@ class PromptVaultViewModel(application: Application) : AndroidViewModel(applicat
             (search.isBlank() || doc.title.contains(search, ignoreCase = true) ||
                     doc.content.contains(search, ignoreCase = true) ||
                     doc.description.contains(search, ignoreCase = true)) &&
-            (cat == "All" || doc.category.equals(cat, ignoreCase = true))
+            (cat == "All" || (cat == "Favorites" && doc.isFavorite) || doc.category.equals(cat, ignoreCase = true))
         }
 
         filtered = when (sort) {
@@ -487,6 +487,50 @@ class PromptVaultViewModel(application: Application) : AndroidViewModel(applicat
                 _aiSuggestionError.value = "Failed: ${e.message}"
             } finally {
                 _aiSuggestionLoading.value = false
+            }
+        }
+    }
+
+    // --- AI Prompt Auto-Generation States & Actions ---
+    private val _aiGenerationLoading = MutableStateFlow(false)
+    val aiGenerationLoading: StateFlow<Boolean> = _aiGenerationLoading.asStateFlow()
+
+    private val _aiGenerationResult = MutableStateFlow<GeminiService.GenerationResult?>(null)
+    val aiGenerationResult: StateFlow<GeminiService.GenerationResult?> = _aiGenerationResult.asStateFlow()
+
+    private val _aiGenerationError = MutableStateFlow<String?>(null)
+    val aiGenerationError: StateFlow<String?> = _aiGenerationError.asStateFlow()
+
+    fun clearAiGeneration() {
+        _aiGenerationResult.value = null
+        _aiGenerationError.value = null
+        _aiGenerationLoading.value = false
+    }
+
+    fun requestAiGeneration(userInput: String, mode: String) {
+        val email = currentUserEmail.value ?: return
+        if (userInput.isBlank()) return
+        _aiGenerationLoading.value = true
+        _aiGenerationError.value = null
+        _aiGenerationResult.value = null
+
+        viewModelScope.launch {
+            try {
+                val existingCats = repository.getCategories(email).firstOrNull()?.map { it.name } ?: emptyList()
+                val result = GeminiService.autoGeneratePrompt(
+                    userInput = userInput,
+                    mode = mode,
+                    existingCategories = existingCats
+                )
+                if (result != null) {
+                    _aiGenerationResult.value = result
+                } else {
+                    _aiGenerationError.value = "Failed to auto-generate prompt from Gemini API."
+                }
+            } catch (e: Exception) {
+                _aiGenerationError.value = "Failed: ${e.message}"
+            } finally {
+                _aiGenerationLoading.value = false
             }
         }
     }

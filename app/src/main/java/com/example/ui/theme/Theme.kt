@@ -6,12 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Primary,
-    secondary = Secondary,
-    tertiary = Tertiary,
+    primary = EmeraldAccent,
+    secondary = CyanAccent,
+    tertiary = ArtisticLightPurple,
     background = ObsidianBg,
     surface = CardBackground,
-    onPrimary = ArtisticDarkPurple,  // Deep purple on the Lavender primary button
+    onPrimary = Color.White,
     onSecondary = Color.Black,
     onBackground = LightGrayText,
     onSurface = LightGrayText,

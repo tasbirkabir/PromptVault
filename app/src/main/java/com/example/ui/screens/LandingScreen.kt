@@ -205,11 +205,8 @@ fun LandingAppBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            AsyncImage(
-                model = "https://i.imgur.com/kt8KWwR.png",
-                contentDescription = "PromptVault Logo",
-                modifier = Modifier.size(36.dp),
-                contentScale = ContentScale.Fit
+            PromptVaultLogo(
+                modifier = Modifier.size(36.dp)
             )
             Text(
                 text = "PromptVault",

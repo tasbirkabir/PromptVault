@@ -45,8 +45,8 @@ fun UpgradeScreen(
     // Layout configuration
     val backgroundGradient = Brush.verticalGradient(
         colors = listOf(
-            Color(0xFF0F0E17),
-            Color(0xFF07050C)
+            ObsidianBg,
+            ObsidianBg
         )
     )
 
@@ -84,12 +84,12 @@ fun UpgradeScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF0F0E17),
+                    containerColor = ObsidianBg,
                     titleContentColor = Color.White
                 )
             )
         },
-        containerColor = Color(0xFF0F0E17)
+        containerColor = ObsidianBg
     ) { innerPadding ->
         Column(
             modifier = Modifier
