@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Neon lock shackle -->
+    <path
+        android:pathData="M38,50V38c0,-8.8 7.2,-16 16,-16h0c8.8,0 16,7.2 16,16v12"
+        android:strokeWidth="5"
+        android:strokeColor="#00E676"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <!-- Lock Solid Body -->
+    <path
+        android:pathData="M30,48h48c4.4,0 8,3.6 8,8v22c0,4.4 -3.6,8 -8,8H30c-4.4,0 -8,-3.6 -8,-8V56c0,-4.4 3.6,-8 8,-8z"
+        android:fillColor="#ffffff" />
+    <!-- Cyber Secure Keyhole -->
+    <path
+        android:pathData="M54,61m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"
+        android:fillColor="#090A0F" />
+    <path
+        android:pathData="M52,64h4l2,10h-8z"
+        android:fillColor="#090A0F" />
+    <!-- Little glow stars -->
+    <path
+        android:pathData="M80,30l2,3l3,-2l-1,4l3,2l-4,1l-1,4l-1,-4l-4,-1l3,-2z"
+        android:fillColor="#00E676" />
+</vector>

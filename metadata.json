@@ -1,0 +1,6 @@
+{
+  "name": "PromptVault",
+  "description": "Dark-mode AI Prompt Vault for saving, managing, and search-filtering your best prompts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
